@@ -1,5 +1,9 @@
 package basic.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService{
     // 추상화뿐만 아니라 구현체에도 의존하는 문제 발생. DIP 원칙 위반
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -7,6 +11,7 @@ public class MemberServiceImpl implements MemberService{
     // 추상화에만 의존
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
