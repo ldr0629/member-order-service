@@ -1,14 +1,16 @@
 package basic.core.order;
 
+import basic.core.annotation.MainDiscountPolicy;
 import basic.core.discount.DiscountPolicy;
 import basic.core.member.Member;
 import basic.core.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor// final이 붙은 변수들을 가지고 자동으로 생성자를 만들어준다. (롬복 사용)
+// @RequiredArgsConstructor final이 붙은 변수들을 가지고 자동으로 생성자를 만들어준다. (롬복 사용)
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
@@ -31,11 +33,11 @@ public class OrderServiceImpl implements OrderService{
 //        this.discountPolicy = discountPolicy;
 //    }
 
-//    @Autowired // (생성자 주입, @Autowired 생략 가능)
-//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        this.memberRepository = memberRepository;
-//        this.discountPolicy = discountPolicy;
-//    }
+    @Autowired // (생성자 주입, @Autowired 생략 가능)
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
