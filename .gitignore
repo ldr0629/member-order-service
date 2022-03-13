@@ -35,3 +35,5 @@ out/
 
 ### VS Code ###
 .vscode/
+src/test/java/basic/core/order/lifecycle/NetworkClient.java
+src/test/java/basic/core/order/lifecycle/BeanLifeCycleTest.java
